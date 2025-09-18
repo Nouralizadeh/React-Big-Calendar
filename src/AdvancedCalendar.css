@@ -1,0 +1,53 @@
+.advanced-calendar-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+
+/* Big Calendar Overrides for fullscreen */
+.advanced-calendar-fullscreen .rbc-calendar {
+  height: 100vh;
+  border-radius: 0;
+}
+
+.advanced-calendar-fullscreen .rbc-toolbar {
+  padding: 16px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.advanced-calendar-fullscreen .rbc-month-view,
+.advanced-calendar-fullscreen .rbc-time-view,
+.advanced-calendar-fullscreen .rbc-day-view {
+  border: none;
+}
+
+.advanced-calendar-fullscreen .rbc-month-row {
+  min-height: 120px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .advanced-calendar-fullscreen .rbc-toolbar {
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .advanced-calendar-fullscreen .rbc-btn-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .advanced-calendar-fullscreen .rbc-toolbar-label {
+    text-align: center;
+    margin: 8px 0;
+  }
+}

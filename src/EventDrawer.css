@@ -1,0 +1,92 @@
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.event-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease-out;
+}
+
+.event-drawer.mobile {
+  transform: translateY(0);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #4a6bdf;
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.drawer-save-btn {
+  background: none;
+  border: none;
+  color: #4a6bdf;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.drawer-form {
+  padding-bottom: 20px;
+}
+
+/* Responsive styles for desktop */
+@media (min-width: 768px) {
+  .event-drawer {
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+  }
+
+  .drawer-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Handle very small mobile devices */
+@media (max-height: 600px) {
+  .event-drawer {
+    max-height: 80vh;
+  }
+}

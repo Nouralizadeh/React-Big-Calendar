@@ -1,0 +1,29 @@
+{
+  "name": "textbox",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "@hello-pangea/dnd": "^17.0.0",
+    "@mantine/core": "^7.11.2",
+    "@mantine/hooks": "^7.11.2",
+    "@rayvarz-tech/mantine-meta": "^7.0.1",
+    "@tabler/icons-react": "^3.16.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "clsx": "^2.1.1",
+    "mantine-datatable": "^7.11.2",
+    "moment": "^2.30.1",
+    "react-big-calendar": "^1.19.4",
+    "vite": "^5.3.5"
+  },
+  "devDependencies": {
+    "@rayvarz-tech/vite-meta": "^5.2.0",
+    "@types/react-big-calendar": "^1.16.3"
+  }
+}
