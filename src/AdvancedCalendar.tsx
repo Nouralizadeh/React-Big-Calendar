@@ -11,9 +11,11 @@ const localizer = momentLocalizer(moment);
 
 interface Event {
   id: number;
+  allDay?: boolean;
   title: string;
   start: Date;
   end: Date;
+  desc?: string;
 }
 
 const AdvancedCalendar: React.FC = () => {

@@ -11,7 +11,7 @@ const localizer = momentLocalizer(moment);
 
 interface Event {
   id: number;
-  allDay?: string;
+  allDay?: boolean;
   title: string;
   start: Date;
   end: Date;
