@@ -1,0 +1,95 @@
+.iranian-calendar-container {
+  direction: rtl;
+  font-family: 'Vazir', 'Tanha', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+/* هدر سفارشی برای روزها */
+.custom-header {
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.day-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.day-number {
+  font-size: 1.2em;
+}
+
+/* روزهای ماه */
+.custom-month-day {
+  text-align: center;
+  padding: 8px;
+  height: 100%;
+}
+
+/* حذف پنج‌شنبه و جمعه از تقویم */
+.rbc-month-row {
+  min-height: 100px;
+}
+
+.rbc-day-bg:nth-child(6),
+.rbc-day-bg:nth-child(7),
+.rbc-header:nth-child(6),
+.rbc-header:nth-child(7) {
+  display: none !important;
+}
+
+.rbc-date-cell:nth-child(6),
+.rbc-date-cell:nth-child(7) {
+  display: none !important;
+}
+
+/* تنظیم عرض ستون‌ها برای 5 روز */
+.rbc-month-view {
+  width: 100%;
+}
+
+.rbc-header {
+  flex: 1;
+  min-width: 0;
+}
+
+.rbc-day-bg {
+  flex: 1;
+  min-width: 0;
+}
+
+/* استایل‌های کلی تقویم */
+.rbc-calendar {
+  direction: rtl;
+}
+
+.rbc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rbc-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.rbc-toolbar button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.rbc-toolbar button:hover {
+  background: #f0f0f0;
+}
+
+.rbc-toolbar button.rbc-active {
+  background: #3174ad;
+  color: white;
+  border-color: #3174ad;
+}

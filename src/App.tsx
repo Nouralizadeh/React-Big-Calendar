@@ -5,6 +5,7 @@ import "mantine-datatable/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import AdvancedCalendar from "./AdvancedCalendar";
 import TimesheetCalendar from "./TimesheetCalendar";
+import IranianCalendar from "./IranianCalendar";
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     <DirectionProvider >
       <MantineProvider>
           {/* <AdvancedCalendar/> */}
-          <TimesheetCalendar/>
+          {/* <TimesheetCalendar/> */}
+          <IranianCalendar/>
       </MantineProvider>
     </DirectionProvider>
   );
