@@ -11,14 +11,23 @@ interface EventModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAddEvent: (event: EventData) => void;
+  onDeleteEvent?: () => void;
   selectedSlot: { start: Date; end: Date } | null;
+  selectedEvent?: {
+    id: string;
+    title: string;
+    start: Date;
+    end: Date;
+  } | null;
 }
 
 const EventModal: React.FC<EventModalProps> = ({
   isOpen,
   onClose,
   onAddEvent,
-  selectedSlot
+  onDeleteEvent,
+  selectedSlot,
+  selectedEvent
 }) => {
   const [title, setTitle] = useState('');
   const [startTime, setStartTime] = useState('11:00');
@@ -26,12 +35,17 @@ const EventModal: React.FC<EventModalProps> = ({
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
-    if (selectedSlot) {
+    if (selectedEvent) {
+      setTitle(selectedEvent.title);
+      setSelectedDate(selectedEvent.start);
+      setStartTime(formatTime(selectedEvent.start));
+      setEndTime(formatTime(selectedEvent.end));
+    } else if (selectedSlot) {
       setSelectedDate(selectedSlot.start);
       setStartTime(formatTime(selectedSlot.start));
       setEndTime(formatTime(selectedSlot.end));
     }
-  }, [selectedSlot]);
+  }, [selectedSlot, selectedEvent]);
 
   const formatTime = (date: Date): string => {
     return date.toTimeString().substring(0, 5);
@@ -56,11 +70,9 @@ const EventModal: React.FC<EventModalProps> = ({
       end
     });
 
-    // Reset form
     setTitle('');
     setStartTime('11:00');
     setEndTime('12:00');
-    onClose();
   };
 
   if (!isOpen) return null;
@@ -69,7 +81,7 @@ const EventModal: React.FC<EventModalProps> = ({
     <div className="modal-overlay">
       <div className="modal">
         <div className="modal-header">
-          <h2>Add New Event</h2>
+          <h2>{selectedEvent ? 'Edit Event' : 'Add New Event'}</h2>
           <button className="close-btn" onClick={onClose}>
             ×
           </button>
@@ -127,11 +139,20 @@ const EventModal: React.FC<EventModalProps> = ({
           </div>
 
           <div className="button-group">
+            {selectedEvent && onDeleteEvent && (
+              <button 
+                type="button" 
+                className="delete-btn"
+                onClick={onDeleteEvent}
+              >
+                Delete
+              </button>
+            )}
             <button type="button" className="cancel-btn" onClick={onClose}>
               Cancel
             </button>
             <button type="submit" className="add-btn">
-              Add Event
+              {selectedEvent ? 'Update' : 'Add'} Event
             </button>
           </div>
         </form>

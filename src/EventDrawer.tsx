@@ -11,7 +11,14 @@ interface EventDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onAddEvent: (event: EventData) => void;
+  onDeleteEvent?: () => void;
   selectedSlot: { start: Date; end: Date } | null;
+  selectedEvent?: {
+    id: string;
+    title: string;
+    start: Date;
+    end: Date;
+  } | null;
   isMobile: boolean;
 }
 
@@ -19,7 +26,9 @@ const EventDrawer: React.FC<EventDrawerProps> = ({
   isOpen,
   onClose,
   onAddEvent,
+  onDeleteEvent,
   selectedSlot,
+  selectedEvent,
   isMobile
 }) => {
   const [title, setTitle] = useState('');
@@ -28,12 +37,17 @@ const EventDrawer: React.FC<EventDrawerProps> = ({
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
-    if (selectedSlot) {
+    if (selectedEvent) {
+      setTitle(selectedEvent.title);
+      setSelectedDate(selectedEvent.start);
+      setStartTime(formatTime(selectedEvent.start));
+      setEndTime(formatTime(selectedEvent.end));
+    } else if (selectedSlot) {
       setSelectedDate(selectedSlot.start);
       setStartTime(formatTime(selectedSlot.start));
       setEndTime(formatTime(selectedSlot.end));
     }
-  }, [selectedSlot]);
+  }, [selectedSlot, selectedEvent]);
 
   const formatTime = (date: Date): string => {
     return date.toTimeString().substring(0, 5);
@@ -58,11 +72,9 @@ const EventDrawer: React.FC<EventDrawerProps> = ({
       end
     });
 
-    // Reset form
     setTitle('');
     setStartTime('11:00');
     setEndTime('12:00');
-    onClose();
   };
 
   if (!isOpen) return null;
@@ -75,9 +87,9 @@ const EventDrawer: React.FC<EventDrawerProps> = ({
           <button className="drawer-close-btn" onClick={onClose}>
             <i className="fas fa-arrow-down"></i>
           </button>
-          <h2>Add New Event</h2>
+          <h2>{selectedEvent ? 'Edit Event' : 'Add New Event'}</h2>
           <button className="drawer-save-btn" onClick={handleSubmit}>
-            Save
+            {selectedEvent ? 'Update' : 'Save'}
           </button>
         </div>
 
@@ -133,11 +145,20 @@ const EventDrawer: React.FC<EventDrawerProps> = ({
           </div>
 
           <div className="button-group">
+            {selectedEvent && onDeleteEvent && (
+              <button 
+                type="button" 
+                className="delete-btn"
+                onClick={onDeleteEvent}
+              >
+                Delete
+              </button>
+            )}
             <button type="button" className="cancel-btn" onClick={onClose}>
               Cancel
             </button>
             <button type="submit" className="add-btn">
-              Add Event
+              {selectedEvent ? 'Update' : 'Add'} Event
             </button>
           </div>
         </form>
